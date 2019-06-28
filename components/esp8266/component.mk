@@ -5,7 +5,7 @@ ifdef IS_BOOTLOADER_BUILD
 COMPONENT_OBJS := source/ets_printf.o
 COMPONENT_SRCDIRS := source
 else
-COMPONENT_ADD_INCLUDEDIRS += include
+COMPONENT_ADD_INCLUDEDIRS += include include/rom
 COMPONENT_PRIV_INCLUDEDIRS := include/driver
 COMPONENT_SRCDIRS := driver source
 
