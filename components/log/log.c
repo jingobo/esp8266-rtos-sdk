@@ -234,12 +234,11 @@ out:
 
 #ifndef BOOTLOADER_BUILD
 /**
- * @brief Write message into the log
+ * @brief Write message into the log (via varargs)
  */
-void esp_log_write(esp_log_level_t level, const char *tag,  const char *fmt, ...)
+void esp_log_write_va(esp_log_level_t level, const char *tag,  const char *fmt, va_list va)
 {
     int ret;
-    va_list va;
     char *pbuf;
     char prefix;
 
@@ -270,9 +269,7 @@ void esp_log_write(esp_log_level_t level, const char *tag,  const char *fmt, ...
     if (ret == EOF)
         goto exit;
 
-    va_start(va, fmt);
     ret = vasprintf(&pbuf, fmt, va);
-    va_end(va);
     if (ret < 0)
         goto out;
     ret = esp_log_write_str(pbuf);
@@ -293,6 +290,17 @@ out:
 
 exit:
     _lock_release_recursive(&s_lock);
+}
+
+/**
+ * @brief Write message into the log
+ */
+void esp_log_write(esp_log_level_t level, const char *tag,  const char *fmt, ...)
+{
+    va_list va;
+    va_start(va, fmt);
+        esp_log_write_va(level, tag, fmt, va);
+    va_end(va);
 }
 
 /**

@@ -103,6 +103,16 @@ uint32_t esp_log_timestamp(void);
 uint32_t esp_log_early_timestamp(void);
 
 /**
+ * @brief Write message into the log (via varargs)
+ *
+ * This function is not intended to be used directly. Instead, use one of
+ * ESP_LOGE, ESP_LOGW, ESP_LOGI, ESP_LOGD, ESP_LOGV macros.
+ *
+ * This function or these macros should not be used from an interrupt.
+ */
+void esp_log_write_va(esp_log_level_t level, const char* tag, const char* format, va_list va);
+
+/**
  * @brief Write message into the log
  *
  * This function is not intended to be used directly. Instead, use one of
