@@ -1421,7 +1421,7 @@ size_t memp_malloc_get_size(size_t type);
  * While this helps code completion, it might conflict with existing libraries.
  * (only used if you use sockets.c)
  */
-#define LWIP_COMPAT_SOCKETS             1
+#define LWIP_COMPAT_SOCKETS             0
 
 /**
  * LWIP_POSIX_SOCKETS_IO_NAMES==1: Enable POSIX-style sockets functions names.
