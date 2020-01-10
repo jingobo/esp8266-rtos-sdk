@@ -50,6 +50,7 @@
 #define MDNS_ANSWER_AAAA            0x10
 #define MDNS_ANSWER_NSEC            0x20
 #define MDNS_ANSWER_SDPTR           0x80
+#define MDNS_ANSWER_AAAA_SIZE       16
 
 #define MDNS_SERVICE_PORT           5353                    // UDP port that the server runs on
 #define MDNS_SERVICE_STACK_DEPTH    CONFIG_MDNS_STACKSIZE   // Stack size for the service thread
@@ -182,6 +183,7 @@ typedef struct {
     char domain[MDNS_NAME_BUF_LEN];
     uint8_t parts;
     uint8_t sub;
+    bool invalid;
 } mdns_name_t;
 
 typedef struct mdns_parsed_question_s {

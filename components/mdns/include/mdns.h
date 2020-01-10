@@ -44,8 +44,8 @@ typedef enum {
  *          Used in mdns_service_add()
  */
 typedef struct {
-    char * key;                             /*!< item key name */
-    char * value;                           /*!< item value string */
+    const char * key;                       /*!< item key name */
+    const char * value;                     /*!< item value string */
 } mdns_txt_item_t;
 
 /**
@@ -135,7 +135,7 @@ esp_err_t mdns_instance_name_set(const char * instance_name);
  *     - ESP_ERR_INVALID_ARG Parameter error
  *     - ESP_ERR_NO_MEM memory error
  */
-esp_err_t mdns_service_add(const char * instance_name, const char * service_type, const char * proto, uint16_t port, mdns_txt_item_t txt[], size_t num_items);
+esp_err_t mdns_service_add(const char * instance_name, const char * service_type, const char * proto, uint16_t port, const mdns_txt_item_t txt[], size_t num_items);
 
 /**
  * @brief  Remove service from mDNS server
